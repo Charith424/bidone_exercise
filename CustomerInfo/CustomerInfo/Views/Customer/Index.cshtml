@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CustomerDetailViewModel>
+@{
+
+    ViewBag.Title = "Customer Details";
+
+}
+
+    @if (Model != null && Model.Any()){
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @* added encorder to prevent xss *@
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new {  id=item.CustomerId }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.CustomerId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+    <p class="lead">No customer data available.</p>
+    }
+
+
+<input type="button" value="Create New Customer" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Customer")'" />

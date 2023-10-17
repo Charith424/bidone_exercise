@@ -1,0 +1,22 @@
+﻿@model CustomerDetailViewModel
+
+<h1>Customer Details</h1>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.LabelFor( x => x.FirstName)
+    </dt>
+    <dd>
+        @Html.DisplayFor( x =>x.FirstName)
+    </dd>
+    <dt>
+        @Html.LabelFor( x => x.LastName)
+    </dt>
+    <dd>
+        @Html.DisplayFor( x => x.LastName)
+    </dd>
+
+</dl>
+<input type="button" value="Edit Customer" class="btn btn-secondary" onclick="location.href='@Url.Action("Edit", "Customer", new { id = Model.CustomerId})'" />
+<input type="button" value="Create New Customer" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Customer")'" />
+ <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Customer")'">Customer List
+
